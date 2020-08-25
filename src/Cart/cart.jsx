@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import {connect} from 'react-redux';
 import HPLaptop from "../images/images.jpg";
 import Lenova from '../images/img1.jpg';
@@ -18,23 +18,34 @@ const Cart=(basketProps)=>{
     const productImages=[HPLaptop,Lenova,Dell,Apple]
     summary = summary.map((product,index)=> {
         return (
-            <div>
-                <div className="product"> <icon-icon name="close-circle"></icon-icon><img src={productImages[index]}>            
-                </img>
-        <span className='sm-hide'>{product.name}</span>
-               </div>
+            <Fragment>
+                 {/* <ion-icon name="arrow-back-circle-outline"/>  */}
+                <div className="product"> <ion-icon name="close-circle"/><img src={productImages[index]}/>            
+                 <span className='sm-hide'>{product.name}</span>    </div>
+        <div className="price sm-hide">${product.price},00</div>
                <div className="quantity">
-                   <icon-icon className="decrease" name="arrow-back-circle-outline"></icon-icon>
+                   <ion-icon className="decrease" name="arrow-back-circle-outline"></ion-icon>
         <span>{product.numbers}</span>
-        <icon-icon className="increase" name="arrow-forward-circle-outline"></icon-icon>
+        <ion-icon className="increase" name="arrow-forward-circle-outline"></ion-icon>
                </div>
                <div className="total">${product.numbers*product.price}.00</div>
-
-            </div>
+            </Fragment>
         )
     })
-    return <div>
-{summary}:{basketProps.basketProps.cartCost}
+    return <div className='container-products'>
+        <div className='product-header'>
+            <h5 className='product-title'>PRODUCT</h5>
+            <h5 className="price sm-hide">PRICE</h5>
+            <h5 className="quantity">QUANTITY</h5>
+            <h5 className="total">TOTAL</h5>
+                    </div>
+                    <div className='products'>
+                        {summary}
+                    </div><br/>
+            <div className="basketTotalContainer">
+                <h4 className="basketTotalTitle">Basket Total</h4>
+<h4 className="basketTotal">{basketProps.basketProps.cartCost},00</h4>
+            </div>
     </div>
 }
 const mapStateToProps=(state)=>({
