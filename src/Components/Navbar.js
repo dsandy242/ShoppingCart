@@ -3,7 +3,10 @@ import {connect} from 'react-redux';
 import {getNumbers} from '../actions/getActions'
 import {Link} from 'react-router-dom'
 const Navbar=(props)=>{
-  console.log(props);
+  // debugger
+  // let Num=props.basketProps.basketNumbers
+  // let pNum=localStorage.getItem('Num')
+  // console.log(pNum);
  
   useEffect(()=>{
     getNumbers();
